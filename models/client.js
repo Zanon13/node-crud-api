@@ -1,4 +1,9 @@
 import mongoose from "mongoose"
+/* *** Descomente os trechos de código caso queira um _id com auto increment*** 
+   *** O método é deprecated e não achei outro jeito de resolver ***
+*/
+// import mSequence from "mongoose-sequence"
+// const AutoIncrement = mSequence(mongoose)
 
 const ClientSchema = new mongoose.Schema({
   name: {
@@ -10,6 +15,7 @@ const ClientSchema = new mongoose.Schema({
     required: true,
   }
 })
+//ClientSchema.plugin(AutoIncrement)
 
 const Client = mongoose.model('Client', ClientSchema)
 
