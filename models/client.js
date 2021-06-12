@@ -1,4 +1,4 @@
-import mongoose from "../database/connection.js"
+import mongoose from "mongoose"
 
 const ClientSchema = new mongoose.Schema({
   name: {
