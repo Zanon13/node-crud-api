@@ -1,12 +1,7 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import Client from '../models/client.js'
 
 const router = express.Router()
-mongoose.connect('mongodb://localhost/node-crud-api', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
 
 router.use((req, res, next) => {
   console.log('*-*')
@@ -43,7 +38,7 @@ router.put('/clients/:client_id', async (req, res) => {
   const { _id } = req.body
 
   try {
-    await Client.findOneAndUpdate({ _id }, req.body)
+    await Client.updateOne({ _id }, req.body)
 
     return res.send({ message: 'Client updated!' })
   } catch (err) {
@@ -55,7 +50,7 @@ router.delete('/clients/:client_id', async (req, res) => {
   const { _id } = req.body
 
   try {
-    await Client.findOneAndDelete({ _id })
+    await Client.remove({ _id })
 
     return res.send({ message: 'Client deleted!' })
   } catch (err) {

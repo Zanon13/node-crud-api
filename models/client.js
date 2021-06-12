@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "../database/connection.js"
 /* *** Descomente os trechos de código caso queira um _id com auto increment*** 
    *** O método é deprecated e não achei outro jeito de resolver ***
 */
