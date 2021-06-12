@@ -1,6 +1,7 @@
 # CRUD
+Estudo sobre desenvolvimento de API's e interação com o MongoDB
 
-Programa feito para realizar CRUDs
+Foi feito uma API para um fazer um CRUD de Cliente.
 
 Utilizando:
 - Express.js
