@@ -9,11 +9,11 @@ mongoose.connect('mongodb://localhost/node-crud-api', {
 })
 
 router.use((req, res, next) => {
-  console.log('Algo acontece aqui!')
+  console.log('*-*')
   next()
 })
 
-router.get('/showAll', async (req, res) => {
+router.get('/clients', async (req, res) => {
   const client = await Client.find()
 
   if (client.length === 0) {
@@ -31,11 +31,35 @@ router.post('/addClient', async (req, res) => {
       return res.status(400).send({ error: 'Client already exists!' })
     }
 
-    const client = await Client.create(req.body)
+    await Client.create(req.body)
 
     return res.send({ message: 'Client registered!' })
   } catch (err) {
     return res.status(400).send({ error: 'Registration failed' })
+  }
+})
+
+router.put('/clients/:client_id', async (req, res) => {
+  const { _id } = req.body
+
+  try {
+    await Client.findOneAndUpdate({ _id }, req.body)
+
+    return res.send({ message: 'Client updated!' })
+  } catch (err) {
+    return res.status(400).send({ error: 'This client does not exist!' })
+  }
+})
+
+router.delete('/clients/:client_id', async (req, res) => {
+  const { _id } = req.body
+
+  try {
+    await Client.findOneAndDelete({ _id })
+
+    return res.send({ message: 'Client deleted!' })
+  } catch (err) {
+    return res.status(400).send({ error: 'This client does not exist!' })
   }
 })
 
