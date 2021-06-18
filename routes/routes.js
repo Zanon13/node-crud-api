@@ -3,11 +3,6 @@ import Client from '../models/client.js'
 
 const router = express.Router()
 
-router.use((req, res, next) => {
-  console.log('*-*')
-  next()
-})
-
 router.get('/clients', async (req, res) => {
   const client = await Client.find()
 
@@ -50,7 +45,7 @@ router.delete('/clients/:client_id', async (req, res) => {
   const { _id } = req.body
 
   try {
-    await Client.remove({ _id })
+    await Client.deleteOne({ _id })
 
     return res.send({ message: 'Client deleted!' })
   } catch (err) {
